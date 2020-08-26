@@ -1,0 +1,148 @@
+[1] "Head"
+  x pclass survived                                            name    sex
+1 1      1        1                   Allen, Miss. Elisabeth Walton female
+2 2      1        1                  Allison, Master. Hudson Trevor   male
+3 3      1        0                    Allison, Miss. Helen Loraine female
+4 4      1        0            Allison, Mr. Hudson Joshua Creighton   male
+5 5      1        0 Allison, Mrs. Hudson J C (Bessie Waldo Daniels) female
+6 6      1        1                             Anderson, Mr. Harry   male
+     age sibsp parch ticket     fare   cabin embarked
+1     29     0     0  24160 211.3375      B5        S
+2 0.9167     1     2 113781   151.55 C22 C26        S
+3      2     1     2 113781   151.55 C22 C26        S
+4     30     1     2 113781   151.55 C22 C26        S
+5     25     1     2 113781   151.55 C22 C26        S
+6     48     0     0  19952    26.55     E12        S
+                        home.dest
+1                    St Louis, MO
+2 Montreal, PQ / Chesterville, ON
+3 Montreal, PQ / Chesterville, ON
+4 Montreal, PQ / Chesterville, ON
+5 Montreal, PQ / Chesterville, ON
+6                    New York, NY
+[1] "Tail"
+        x pclass survived                      name    sex  age sibsp parch
+1304 1304      3        0     Yousseff, Mr. Gerious   male    ?     0     0
+1305 1305      3        0      Zabour, Miss. Hileni female 14.5     1     0
+1306 1306      3        0     Zabour, Miss. Thamine female    ?     1     0
+1307 1307      3        0 Zakarian, Mr. Mapriededer   male 26.5     0     0
+1308 1308      3        0       Zakarian, Mr. Ortin   male   27     0     0
+1309 1309      3        0        Zimmerman, Mr. Leo   male   29     0     0
+     ticket    fare cabin embarked home.dest
+1304   2627 14.4583     ?        C         ?
+1305   2665 14.4542     ?        C         ?
+1306   2665 14.4542     ?        C         ?
+1307   2656   7.225     ?        C         ?
+1308   2670   7.225     ?        C         ?
+1309 315082   7.875     ?        S         ?
+[1] "Shuffled head"
+        x pclass survived                                      name    sex age
+901   901      3        0 Johnston, Master. William Arthur 'Willie'   male   ?
+644   644      3        1            Asplund, Miss. Lillian Gertrud female   5
+452   452      2        0                         Hold, Mr. Stephen   male  44
+1300 1300      3        0                       Yasbeck, Mr. Antoni   male  27
+908   908      3        0                   Jussila, Miss. Katriina female  20
+14     14      1        1              Barber, Miss. Ellen 'Nellie' female  26
+     sibsp parch     ticket    fare cabin embarked                home.dest
+901      1     2 W./C. 6607   23.45     ?        S                        ?
+644      4     2     347077 31.3875     ?        S     Sweden Worcester, MA
+452      1     0      26707      26     ?        S England / Sacramento, CA
+1300     1     0       2659 14.4542     ?        C                        ?
+908      1     0       4136   9.825     ?        S                        ?
+14       0     0      19877   78.85     ?        S                        ?
+[1] "Cleaned data"
+Rows: 1,045
+Columns: 8
+$ pclass   <fct> Lower, Middle, Lower, Lower, Upper, Middle, Upper, Lower, Mi…
+$ survived <fct> Yes, No, No, No, Yes, Yes, No, No, No, No, Yes, No, No, Yes,…
+$ sex      <fct> female, male, male, female, female, female, male, male, male…
+$ age      <int> 69, 62, 36, 24, 34, 74, 64, 95, 41, 39, 36, 31, 50, 23, 33, …
+$ sibsp    <int> 4, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 2, 0, 1, 1, 0, 0, 0, 5, 0, …
+$ parch    <int> 2, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 2, 0, …
+$ fare     <dbl> 124, 98, 41, 276, 238, 86, 111, 214, 89, 214, 179, 90, 197, …
+$ embarked <fct> S, S, C, S, S, S, S, S, C, S, S, S, S, S, S, S, S, S, S, S, …
+[1] "Train & test dimensions"
+[1] 836   8
+[1] 209   8
+[1] "Survived in train & test data"
+
+       No       Yes 
+0.5801435 0.4198565 
+
+       No       Yes 
+0.6363636 0.3636364 
+[1] "Default tree"
+[1] "Predict on train data"
+     predict_survivors
+       No Yes
+  No  461  24
+  Yes 140 211
+[1] "Accuracy 0.803827751196172"
+[1] "Predict on test data"
+     predict_survivors
+       No Yes
+  No  123  10
+  Yes  33  43
+[1] "Accuracy 0.794258373205742"
+[1] "Metrics on default tree"
+
+Classification tree:
+rpart(formula = survived ~ ., data = data_train, method = "class")
+
+Variables actually used in tree construction:
+[1] age    fare   pclass sex   
+
+Root node error: 351/836 = 0.41986
+
+n= 836 
+
+        CP nsplit rel error  xerror     xstd
+1 0.470085      0   1.00000 1.00000 0.040655
+2 0.019943      1   0.52991 0.52991 0.034261
+3 0.011396      3   0.49003 0.53561 0.034392
+4 0.010000      5   0.46724 0.53276 0.034327
+[1] "Tuned tree"
+[1] "Predict on train data"
+     predict_survivors
+       No Yes
+  No  471  14
+  Yes 168 183
+[1] "Accuracy 0.782296650717703"
+[1] "Predict on test data"
+     predict_survivors
+       No Yes
+  No  131   2
+  Yes  39  37
+[1] "Accuracy 0.803827751196172"
+[1] "Metrics on tuned tree"
+
+Classification tree:
+rpart(formula = survived ~ ., data = data_train, method = "class", 
+    maxdepth = 2)
+
+Variables actually used in tree construction:
+[1] pclass sex   
+
+Root node error: 351/836 = 0.41986
+
+n= 836 
+
+        CP nsplit rel error  xerror     xstd
+1 0.470085      0   1.00000 1.00000 0.040655
+2 0.011396      1   0.52991 0.52991 0.034261
+3 0.010000      2   0.51852 0.54986 0.034712
+[1] "Cleaned linear data"
+Rows: 1,045
+Columns: 7
+$ pclass   <int> 3, 2, 3, 3, 1, 2, 1, 3, 2, 3, 3, 3, 3, 2, 3, 2, 2, 2, 3, 3, …
+$ survived <int> 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, …
+$ sex      <fct> 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, …
+$ age      <int> 69, 62, 36, 24, 34, 74, 64, 95, 41, 39, 36, 31, 50, 23, 33, …
+$ sibsp    <int> 4, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 2, 0, 1, 1, 0, 0, 0, 5, 0, …
+$ parch    <int> 2, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 2, 0, …
+$ fare     <dbl> 124, 98, 41, 276, 238, 86, 111, 214, 89, 214, 179, 90, 197, …
+   predict_survived
+      0   1
+  0 111  22
+  1  24  52
+[1] "Linear accuracy 0.779904306220096"
